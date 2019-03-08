@@ -13,10 +13,11 @@ self.addEventListener('install', function(event){
 	});
 	
 self.addEventListener('fetch', function(e){
+	console.log(e.request.url);
 	e.respondWith(
 	 caches.match(e.request)
 	.then(function(resp){
 		return resp || fetch(e.request);
 		})
-	)
+	);
 });
