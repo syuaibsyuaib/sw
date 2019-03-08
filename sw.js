@@ -3,8 +3,8 @@ self.addEventListener('install', function(event){
 	caches.open('v1')
 .then(function(cache){
 		return cache.addAll([
-		'/sw/index.html',
 		'/sw/',
+		'/sw/index.html',
 		'/sw/manifest.json'
 		])
 		})
