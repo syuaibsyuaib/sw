@@ -13,18 +13,15 @@ self.addEventListener('install', function(event){
 	)
 	});
 	
-self.addEventListener('fetch', function(e){
-	console.log(e.request.url);
-	e.respondWith(
-	 caches.match(e.request)
-	.then(function(resp){
-		return resp || fetch(e.request);
-		})
-	.then(function(response) {
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request).then(function(resp) {
+      return resp || fetch(event.request).then(function(response) {
         return caches.open('v1').then(function(cache) {
           cache.put(event.request, response.clone());
           return response;
         });  
       });
-	);
+    })
+  );
 });
