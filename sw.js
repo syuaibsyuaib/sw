@@ -20,5 +20,11 @@ self.addEventListener('fetch', function(e){
 	.then(function(resp){
 		return resp || fetch(e.request);
 		})
+	.then(function(response) {
+        return caches.open('v1').then(function(cache) {
+          cache.put(event.request, response.clone());
+          return response;
+        });  
+      });
 	);
 });
