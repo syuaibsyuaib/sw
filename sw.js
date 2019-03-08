@@ -3,7 +3,6 @@ self.addEventListener('install', function(event) {
     caches.open('v1').then(function(cache) {
       return cache.addAll([
      		'/sw/',
-		'/sw/index.html',
 		'/sw/style.css',
 		'/sw/favicon.ico'
       ]);
